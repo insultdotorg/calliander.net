@@ -1,0 +1,10 @@
+.listing {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  justify-content: center;
+  list-style: none;
+  margin: auto;
+  padding: 0;
+  width: 320px;
+}

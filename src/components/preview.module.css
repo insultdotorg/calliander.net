@@ -1,0 +1,7 @@
+.preview {
+  border-bottom: 1px solid var(--color-accent);
+}
+
+.preview img {
+  display: block;
+}

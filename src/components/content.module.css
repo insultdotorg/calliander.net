@@ -1,0 +1,10 @@
+.content {
+  display: grid;
+  font-size: 1.25rem;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.content p {
+  margin: 0;
+}

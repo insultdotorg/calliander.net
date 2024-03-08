@@ -1,0 +1,28 @@
+{
+  "name": "calliander.net",
+  "version": "1.0.0",
+  "private": true,
+  "description": "calliander.net",
+  "author": "Michael V. Colianna",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "dev": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "ssl": "local-ssl-proxy --source 3010 --target 8000 --cert localhost.pem --key localhost-key.pem"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "gatsby": "^5.12.4",
+    "gatsby-source-filesystem": "^5.12.1",
+    "gatsby-source-storyblok": "^6.2.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^8.0.7"
+  }
+}

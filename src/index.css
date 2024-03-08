@@ -1,0 +1,48 @@
+:root {
+  --color-white: #fffffb;
+  --color-black: #242331;
+  --color-blue: #1a5799;
+  --color-blue-darker: #123c69;
+  --color-grey: #4c5861;
+  --color-accent: #d1d7db;
+
+  --transition: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --transition: color 195ms ease-in-out;
+  }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-family: 'Helvetica Neue', sans-serif;
+  margin: 0;
+}
+
+a {
+  transition: var(--transition);
+}
+
+a,
+a:visited {
+  color: var(--color-blue);
+}
+
+a:active,
+a:focus,
+a:hover {
+  color: var(--color-blue-darker);
+}

@@ -1,0 +1,18 @@
+.link a,
+.disabled {
+  align-items: center;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.link a {
+  color: var(--color-black);
+  height: 100%;
+  width: 100%;
+}
+
+.disabled {
+  color: var(--color-accent);
+}
