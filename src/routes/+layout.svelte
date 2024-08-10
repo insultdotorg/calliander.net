@@ -1,13 +1,29 @@
 <script>
-  //
+  import '../app.css'
+  import ExternalLink from '$lib/components/ExternalLink.svelte'
+  import Link from '$lib/components/Link.svelte'
+
+  export let data
+
+  const isDev = data.source === 'storyblok'
+
+  const year = new Date().getFullYear()
 </script>
 
-<main>
-  <div><a href="/">Home</a></div>
-  <div><a href="/category/money">Money</a></div>
-  <div><a href="/category/not-found">Non Category</a></div>
-  <div><a href="/posts/2024/08/08/day-two">Post</a></div>
-  <div><a href="/posts/1999/01/01/not-found">Non Post</a></div>
+<div class="grid gap-4">
+  <header>
+    <Link href="/" label="Home" />
+  </header>
 
-  <slot />
-</main>
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <span>&copy; 1997&mdash;{year} by <ExternalLink href="https://insult.org/author/calliander" label="Calliander" /></span>
+  </footer>
+
+  {#if isDev}
+    <div class="font-mono text-xs absolute right-0 top-0 p-4 bg-zinc-200/50 rounded-bl">@todo print debug stuff in here</div>
+  {/if}
+</div>

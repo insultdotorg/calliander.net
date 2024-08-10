@@ -36,7 +36,6 @@ export const load = async ({ params }) => {
   }
 
   return {
-    source: 'cached',
     story: story.default,
   }
 }

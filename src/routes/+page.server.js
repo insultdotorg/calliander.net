@@ -18,7 +18,6 @@ export const load = async () => {
     })
 
     return {
-      source: 'storyblok',
       stories: fixStoryblokSlugs(stories),
     }
   }
@@ -26,7 +25,6 @@ export const load = async () => {
   const stories = await getCachedFiles()
 
   return {
-    source: 'cached',
     stories: sortCachedStories(stories),
   }
 }

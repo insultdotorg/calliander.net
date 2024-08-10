@@ -11,15 +11,13 @@ import {
 } from '$lib/common'
 
 export const load = async ({ params, parent }) => {
-  const { tags } = await parent()
+  const { sluggedTags } = await parent()
 
-  const result = Object.entries(tags).find(([, slug]) => params.slug === slug)
+  const tag = sluggedTags[params.slug]
 
-  if (!result) {
+  if (!tag) {
     error(404, `The requested category doesn't exist`)
   }
-
-  const [tag] = result
 
   if (dev) {
     const client = getDeliveryClient(true)
@@ -32,8 +30,8 @@ export const load = async ({ params, parent }) => {
     })
 
     return {
-      source: 'storyblok',
       stories: fixStoryblokSlugs(stories),
+      tag
     }
   }
 
@@ -42,7 +40,7 @@ export const load = async ({ params, parent }) => {
   const stories = cachedStories.filter((story) => story.tag_list.includes(tag))
 
   return {
-    source: 'cached',
     stories: sortCachedStories(stories),
+    tag
   }
 }

@@ -1,5 +1,9 @@
 <script>
+  import ListOfPosts from '$lib/components/ListOfPosts.svelte'
+
   export let data
+
+  const { namedTags, stories } = data
 </script>
 
-<pre>{JSON.stringify(data, null, 2)}</pre>
+<ListOfPosts {namedTags} {stories} />

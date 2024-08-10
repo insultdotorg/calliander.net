@@ -104,20 +104,6 @@ export async function getCachedFiles() {
   return stories
 }
 
-export async function getSingleCachedFile(path) {
-  const cachedFiles = getStoryFiles()
-
-  const filePath = Object.keys(cachedFiles).find((file) => file.includes(path))
-
-  const story = cachedFiles[filePath]
-
-  if (story) {
-    return await story()
-  }
-
-  return undefined
-}
-
 export function getDeliveryClient(preview = false) {
   return new StoryblokClient({
     accessToken: preview ? STORYBLOK_PREVIEW_TOKEN : STORYBLOK_PUBLIC_TOKEN,
@@ -130,6 +116,20 @@ export function getManagementClient() {
     oauthToken: STORYBLOK_OAUTH_TOKEN,
     region: 'us',
   })
+}
+
+export async function getSingleCachedFile(path) {
+  const cachedFiles = getStoryFiles()
+
+  const filePath = Object.keys(cachedFiles).find((file, index) => file.includes(path))
+
+  const story = cachedFiles[filePath]
+
+  if (story) {
+    return await story()
+  }
+
+  return undefined
 }
 
 export function logError(message, details = undefined) {

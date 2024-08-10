@@ -6,11 +6,13 @@ export const load = async () => {
     ? await fetchTags(getDeliveryClient(true))
     : await import('$lib/cms/tags.json')
 
-  const tags = Object.fromEntries(
+  const namedTags = Object.fromEntries(
     Object.entries(sluggedTags).map((a) => a.reverse())
   )
 
   return {
-    tags,
+    namedTags,
+    sluggedTags,
+    source: dev ? 'storyblok' : 'cached',
   }
 }
