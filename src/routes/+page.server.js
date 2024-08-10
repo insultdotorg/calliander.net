@@ -28,3 +28,5 @@ export const load = async () => {
     stories: sortCachedStories(stories),
   }
 }
+
+export const prerender = !dev

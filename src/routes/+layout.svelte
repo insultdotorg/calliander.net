@@ -20,10 +20,17 @@
   </main>
 
   <footer>
-    <span>&copy; 1997&mdash;{year} by <ExternalLink href="https://insult.org/author/calliander" label="Calliander" /></span>
+    <span>
+      &copy; 1997&mdash;{year} by <ExternalLink
+        href="https://insult.org/author/calliander"
+        label="Calliander" />
+    </span>
   </footer>
 
   {#if isDev}
-    <div class="font-mono text-xs absolute right-0 top-0 p-4 bg-zinc-200/50 rounded-bl">@todo print debug stuff in here</div>
+    <div
+      class="font-mono text-xs absolute right-0 top-0 p-4 bg-zinc-200/50 rounded-bl">
+      @todo print debug stuff in here
+    </div>
   {/if}
 </div>

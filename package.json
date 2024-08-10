@@ -6,8 +6,10 @@
 		"dev": "vite dev",
 		"cache": "node src/build/01-stories.js && node src/build/02-tags.js && node src/build/03-catalogs.js && node src/build/04-assets.js",
 		"recache": "node src/build/01-stories.js clear && node src/build/02-tags.js && node src/build/03-catalogs.js && node src/build/04-assets.js clear",
-		"build": "vite build",
-		"preview": "vite preview"
+		"build": "npm run deploy && vite preview",
+		"build:fresh": "npm run deploy:fresh && vite preview",
+		"deploy": "npm run cache && vite build",
+		"deploy:fresh": "npm run recache && vite build"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
@@ -23,6 +25,8 @@
 		"dotenv": "^16.4.5",
 		"glob": "^11.0.0",
 		"postcss": "^8.4.41",
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.6",
 		"rss": "^1.2.2",
 		"storyblok-js-client": "^6.8.1",
 		"striptags": "^3.2.0",

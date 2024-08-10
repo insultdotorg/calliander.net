@@ -14,4 +14,6 @@
   })
 </script>
 
-<time datetime={isoDate} class="text-sm" class:text-zinc-500={isDraft}>{prettyDate}</time>
+<time datetime={isoDate} class="text-sm" class:text-zinc-500={isDraft}>
+  {prettyDate}
+</time>

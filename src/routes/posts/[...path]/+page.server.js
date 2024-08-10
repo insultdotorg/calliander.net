@@ -39,3 +39,5 @@ export const load = async ({ params }) => {
     story: story.default,
   }
 }
+
+export const prerender = !dev

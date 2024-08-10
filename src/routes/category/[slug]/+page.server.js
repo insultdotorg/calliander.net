@@ -44,3 +44,5 @@ export const load = async ({ params, parent }) => {
     tag
   }
 }
+
+export const prerender = !dev

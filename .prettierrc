@@ -1,6 +1,11 @@
 {
+	"bracketSameLine": true,
+	"htmlWhitespaceSensitivity": "ignore",
+	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" }}],
+	"plugins": ["pretter-plugin-svelte"],
+	"pluginSearchDirs": ["."],
+	"quoteProps": "consistent",
 	"semi": false,
 	"singleQuote": true,
-	"quoteProps": "consistent",
 	"trailingComma": "es5"
 }

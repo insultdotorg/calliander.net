@@ -8,7 +8,7 @@
 
   let paginatedPosts = []
   const count = stories.length
-  const toShow = 1
+  const toShow = 10
   const posts = writable(toShow)
 
   function loadMore() {
@@ -33,7 +33,14 @@
 
   {#if $posts < count}
     <div>
-      <button type="button" on:click={() => { loadMore() }} class="border border-black rounded py-1 px-2 font-bold">Load More</button>
+      <button
+        type="button"
+        on:click={() => {
+          loadMore()
+        }}
+        class="border border-black rounded py-1 px-2 font-bold">
+        Load More
+      </button>
     </div>
   {/if}
 </div>
