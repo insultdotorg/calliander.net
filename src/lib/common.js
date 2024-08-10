@@ -108,6 +108,7 @@ export async function getSingleCachedFile(path) {
   const cachedFiles = getStoryFiles()
 
   const filePath = Object.keys(cachedFiles).find((file) => file.includes(path))
+
   const story = cachedFiles[filePath]
 
   if (story) {
