@@ -17,7 +17,7 @@ const PRIME_URL = process.env.DEPLOY_PRIME_URL
 
 export const isProd = !!PRIME_URL
 export const siteUrl = isProd
-  ? 'https://calliander.net'
+  ? PRIME_URL
   : 'https://localhost:4173'
 export const awsUrl = 'https://s3.amazonaws.com/a-us.storyblok.com'
 export const sbUrl = 'https://a-us.storyblok.com'
