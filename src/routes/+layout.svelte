@@ -10,7 +10,7 @@
   const year = new Date().getFullYear()
 </script>
 
-<div class="grid gap-4">
+<div class="font-serif grid gap-4">
   <header>
     <Link href="/" label="Home" />
   </header>

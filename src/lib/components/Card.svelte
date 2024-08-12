@@ -22,5 +22,5 @@
 
   <DateTime {story} />
 
-  <div class="text-zinc-800">{story.content.description}</div>
+  <div>{story.content.description}</div>
 </div>
