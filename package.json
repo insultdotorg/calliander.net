@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"cache": "node src/build/01-stories.js && node src/build/02-tags.js && node src/build/03-catalogs.js && node src/build/04-assets.js",
-		"recache": "node src/build/01-stories.js clear && node src/build/02-tags.js && node src/build/03-catalogs.js && node src/build/04-assets.js clear",
+		"cache": "node src/build/01-posts.js && node src/build/02-tags.js && node src/build/03-catalogs.js && node src/build/04-assets.js",
+		"recache": "node src/build/01-posts.js clear && node src/build/02-tags.js && node src/build/03-catalogs.js && node src/build/04-assets.js clear",
 		"build": "npm run deploy && vite preview",
 		"build:fresh": "npm run deploy:fresh && vite preview",
 		"deploy": "npm run cache && vite build",

@@ -5,19 +5,15 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
-      colors: {
-        amaranth: '#a12657',
-        antiflash: '#f1f1f1',
-        battleship: '#c1c7cb',
-        cadet: '#afb1b6',
-        caribbean: '#06616f',
-        eerie: '#242424',
-        feldgrau: '#475c5c',
-        moss: '#286317',
-      },
       fontFamily: {
         sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
         serif: ['"Libre Baskerville"', ...defaultTheme.fontFamily.serif],
+      },
+      height: {
+        icon: '0.85rem',
+      },
+      width: {
+        icon: '0.85rem',
       },
     },
   },

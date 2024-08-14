@@ -13,8 +13,8 @@ import RSS from 'rss'
 import striptags from 'striptags'
 import xml from 'xml'
 
-const STORIES_PATH = 'src/lib/cms/stories'
-const MOD_FILE = `${STORIES_PATH}/lastMod.txt`
+const POSTS_PATH = 'src/lib/cms/posts'
+const MOD_FILE = `${POSTS_PATH}/lastMod.txt`
 const TAGS_FILE = 'src/lib/cms/tags.json'
 const OUTPUT_ALGOLIA = 'src/lib/cms/algolia.json'
 const OUTPUT_RSS = 'static/feed.xml'
@@ -22,8 +22,8 @@ const OUTPUT_SITEMAP = 'static/sitemap.xml'
 
 logHeading('Building Algolia, RSS, and sitemap catalogs')
 
-if (!existsSync(STORIES_PATH)) {
-  logError('Stories cache is missing')
+if (!existsSync(POSTS_PATH)) {
+  logError('Posts cache is missing')
   process.exit(1)
 }
 
@@ -63,37 +63,37 @@ const rssEntries = new RSS({
 })
 
 const resolver = new RichTextResolver()
-const cachedFiles = await glob(`${STORIES_PATH}/**/*.json`)
+const cachedFiles = await glob(`${POSTS_PATH}/**/*.json`)
 
 cachedFiles.forEach((file) => {
-  const story = JSON.parse(readFileSync(file, 'utf-8'))
+  const post = JSON.parse(readFileSync(file, 'utf-8'))
 
-  const storyDate = story.first_published_at || story.created_at
-  const storyUrl = `${siteUrl}/${story.full_slug}`
-  const storyDescription = story.content.description
-  const renderedContent = resolver.render(story.content.content)
+  const postDate = post.first_published_at || post.created_at
+  const postUrl = `${siteUrl}/${post.full_slug}`
+  const postDescription = post.content.description
+  const renderedContent = resolver.render(post.content.content)
 
   algoliaEntries.push({
-    objectID: story.uuid,
-    title: story.name,
-    description: storyDescription,
-    path: storyUrl,
+    objectID: post.uuid,
+    title: post.name,
+    description: postDescription,
+    path: postUrl,
     content: striptags(renderedContent),
-    date: storyDate,
+    date: postDate,
   })
 
   rssEntries.item({
-    title: story.name,
-    description: storyDescription,
-    url: storyUrl,
-    guid: storyUrl,
-    date: storyDate,
+    title: post.name,
+    description: postDescription,
+    url: postUrl,
+    guid: postUrl,
+    date: postDate,
   })
 
   sitemapEntries.urlset.push({
     url: [
-      { loc: storyUrl },
-      { lastMod: storyDate },
+      { loc: postUrl },
+      { lastMod: postDate },
       { changefreq: 'daily' },
       { priority: 0.5 },
     ],

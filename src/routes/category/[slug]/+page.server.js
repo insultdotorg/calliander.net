@@ -1,12 +1,9 @@
 import { dev } from '$app/environment'
 import { error } from '@sveltejs/kit'
 import {
-  fetchPaginatedStories,
-  fetchTags,
-  fixStoryblokSlugs,
+  fetchPaginatedPosts,
   getCachedFiles,
   getDeliveryClient,
-  slugify,
   sortCachedStories,
 } from '$lib/common'
 
@@ -22,7 +19,7 @@ export const load = async ({ params, parent }) => {
   if (dev) {
     const client = getDeliveryClient(true)
 
-    const stories = await fetchPaginatedStories(client, {
+    const stories = await fetchPaginatedPosts(client, {
       per_page: 100,
       sort_by: ['published_at:desc', 'created_at:desc'],
       version: dev ? 'draft' : 'published',
@@ -30,7 +27,7 @@ export const load = async ({ params, parent }) => {
     })
 
     return {
-      stories: fixStoryblokSlugs(stories),
+      stories,
       tag
     }
   }

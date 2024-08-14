@@ -13,6 +13,5 @@ export const load = async () => {
   return {
     namedTags,
     sluggedTags,
-    source: dev ? 'storyblok' : 'cached',
   }
 }

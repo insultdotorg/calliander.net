@@ -1,24 +1,23 @@
 import { dev } from '$app/environment'
 import {
-  fetchPaginatedStories,
-  fixStoryblokSlugs,
+  fetchPaginatedPosts,
   getCachedFiles,
   getDeliveryClient,
-  sortCachedStories,
+  sortCachedStories
 } from '$lib/common'
 
 export const load = async () => {
   if (dev) {
     const client = getDeliveryClient(true)
 
-    const stories = await fetchPaginatedStories(client, {
+    const stories = await fetchPaginatedPosts(client, {
       per_page: 100,
       sort_by: ['published_at:desc', 'created_at:desc'],
       version: dev ? 'draft' : 'published',
     })
 
     return {
-      stories: fixStoryblokSlugs(stories),
+      stories,
     }
   }
 

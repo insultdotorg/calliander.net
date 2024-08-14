@@ -24,10 +24,10 @@
   $: paginatedPosts = stories.slice(0, $posts)
 </script>
 
-<div class="grid gap-4">
-  <div class="grid gap-4">
-    {#each paginatedPosts as story}
-      <Card {namedTags} {showCategories} {story} />
+<div class="grid gap-8">
+  <div class="grid gap-8">
+    {#each paginatedPosts as story, index}
+      <Card {index} {namedTags} {showCategories} {story} />
     {/each}
   </div>
 
@@ -38,8 +38,8 @@
         on:click={() => {
           loadMore()
         }}
-        class="border border-black rounded py-1 px-2 font-bold">
-        Load More
+        class="border border-black rounded py-2 px-6 font-sans uppercase">
+        Load More Posts
       </button>
     </div>
   {/if}

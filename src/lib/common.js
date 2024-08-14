@@ -5,6 +5,7 @@ import StoryblokClient from 'storyblok-js-client'
 
 dotenv.config()
 
+const APP_URL = process.env.APP_URL
 const STORYBLOK_SPACE_ID = process.env.STORYBLOK_SPACE_ID
 const STORYBLOK_OAUTH_TOKEN = process.env.STORYBLOK_OAUTH_TOKEN
 const STORYBLOK_PREVIEW_TOKEN = process.env.STORYBLOK_PREVIEW_TOKEN
@@ -18,15 +19,16 @@ const PRIME_URL = process.env.DEPLOY_PRIME_URL
 export const isProd = !!PRIME_URL
 export const siteUrl = isProd
   ? PRIME_URL
-  : 'https://localhost:4173'
+  : APP_URL
 export const awsUrl = 'https://s3.amazonaws.com/a-us.storyblok.com'
 export const sbUrl = 'https://a-us.storyblok.com'
 export const assetsUrl = `spaces/${STORYBLOK_SPACE_ID}/assets`
 
-export async function fetchPaginatedStories(client, options) {
-  const stories = []
+export async function fetchPaginatedPosts(client, options) {
+  const posts = []
   const perPage = options.per_page
   let totalPages = 1
+  options.starts_with = 'posts/'
 
   for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
     options.page = currentPage
@@ -39,16 +41,16 @@ export async function fetchPaginatedStories(client, options) {
     if (response.data.stories.length > 0) {
       totalPages = Math.ceil(response.total / perPage)
 
-      stories.push(...response.data.stories)
+      posts.push(...response.data.stories)
 
       isProd &&
         logInfo(
-          `Collecting Storyblok stories, page ${currentPage} of ${totalPages}`
+          `Collecting posts from Storyblok (page ${currentPage} of ${totalPages})`
         )
     }
   }
 
-  return stories
+  return posts
 }
 
 export async function fetchTags(client) {
@@ -72,14 +74,6 @@ export async function fetchTags(client) {
   return tags
 }
 
-export function fixStoryblokSlugs(stories) {
-  return stories.map((story) => {
-    story.full_slug = `posts/${urlDate(story)}/${story.slug}`
-
-    return story
-  })
-}
-
 export function getAlgoliaIndex(write = false) {
   const client = algoliasearch(
     ALGOLIA_APPLICATION_ID,
@@ -91,7 +85,7 @@ export function getAlgoliaIndex(write = false) {
 }
 
 export async function getCachedFiles() {
-  const cachedFiles = getStoryFiles()
+  const cachedFiles = getPostFiles()
 
   const stories = []
 
@@ -119,7 +113,7 @@ export function getManagementClient() {
 }
 
 export async function getSingleCachedFile(path) {
-  const cachedFiles = getStoryFiles()
+  const cachedFiles = getPostFiles()
 
   const filePath = Object.keys(cachedFiles).find((file, index) => file.includes(path))
 
@@ -183,14 +177,14 @@ export function sortCachedStories(stories) {
   })
 }
 
-export function urlDate(story) {
-  const date = story.first_published_at || story.created_at
+export function urlDate(post) {
+  const date = post.first_published_at || post.created_at
 
   return date.split('T').shift().split('-').join('/')
 }
 
-function getStoryFiles() {
-  return import.meta.glob('$lib/cms/stories/**/*.json', {
+function getPostFiles() {
+  return import.meta.glob('$lib/cms/posts/**/*.json', {
     query: '?inline',
   })
 }

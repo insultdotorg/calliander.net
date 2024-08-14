@@ -1,11 +1,10 @@
 import { dev } from '$app/environment'
 import { error } from '@sveltejs/kit'
-import { getDeliveryClient, getSingleCachedFile, urlDate } from '$lib/common'
+import { getDeliveryClient, getSingleCachedFile } from '$lib/common'
 
 export const load = async ({ params }) => {
   if (dev) {
-    const path = params.path.split('/')
-    const slug = path.pop()
+    const slug = `posts/${params.path}`
 
     const client = getDeliveryClient(true)
 
@@ -16,13 +15,6 @@ export const load = async ({ params }) => {
       .catch(() => {
         error(404, `The requested post doesn't exist`)
       })
-
-    const pathDate = path.join('/')
-    const storyDate = urlDate(response.data.story)
-
-    if (pathDate !== storyDate) {
-      error(404, `The requested post doesn't exist`)
-    }
 
     return {
       story: response.data.story,
