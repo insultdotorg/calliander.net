@@ -26,8 +26,8 @@
 
 <div>
   <div>
-    {#each paginatedPosts as story, index}
-      <Card {index} {namedTags} {showCategories} {story} />
+    {#each paginatedPosts as story}
+      <Card {namedTags} {showCategories} {story} />
     {/each}
   </div>
 

@@ -1,5 +1,4 @@
 <script>
-  import Link from '$lib/components/Link.svelte'
   import ListOfPosts from '$lib/components/ListOfPosts.svelte'
 
   export let data
@@ -11,7 +10,7 @@
 
 <div>
   <div>
-    Viewing posts in {tag} category (<Link href="/" label="View all posts" />)
+    Viewing posts in {tag} category (<a href="/">View all posts</a>)
   </div>
 
   <ListOfPosts {namedTags} {stories} {showCategories} />

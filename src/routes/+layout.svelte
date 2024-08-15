@@ -1,16 +1,13 @@
 <script>
   import '../app.css'
   import ExternalLink from '$lib/components/ExternalLink.svelte'
-  import Logo from '$lib/components/Logo.svelte'
 
   const year = new Date().getFullYear()
 </script>
 
 <div>
   <header>
-    <a href="/">
-      <Logo />
-    </a>
+    <a href="/">Home</a>
   </header>
 
   <main>

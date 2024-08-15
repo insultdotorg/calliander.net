@@ -1,6 +1,5 @@
 <script>
   import DateTime from '$lib/components/DateTime.svelte'
-  import Link from '$lib/components/Link.svelte'
   import RichTextResolver from 'storyblok-js-client/richTextResolver'
 
   export let data
@@ -15,7 +14,7 @@
 
   <div>
     {#each story.tag_list as tag}
-      <Link href={`/category/${namedTags[tag]}`} label={tag} />
+      <a href={`/category/${namedTags[tag]}`}>{tag}</a>
     {/each}
   </div>
 
