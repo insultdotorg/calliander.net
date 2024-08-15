@@ -4,19 +4,13 @@
 
   export let data
 
-  const { namedTags, story } = data
+  const { story } = data
 
   const resolver = new RichTextResolver()
 </script>
 
 <div>
   <div>{story.name}</div>
-
-  <div>
-    {#each story.tag_list as tag}
-      <a href={`/category/${namedTags[tag]}`}>{tag}</a>
-    {/each}
-  </div>
 
   <DateTime {story} />
 

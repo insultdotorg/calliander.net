@@ -2,8 +2,6 @@
   import { writable } from 'svelte/store'
   import Card from '$lib/components/Card.svelte'
 
-  export let namedTags
-  export let showCategories = true
   export let stories
 
   let paginatedPosts = []
@@ -27,7 +25,7 @@
 <div>
   <div>
     {#each paginatedPosts as story}
-      <Card {namedTags} {showCategories} {story} />
+      <Card {story} />
     {/each}
   </div>
 

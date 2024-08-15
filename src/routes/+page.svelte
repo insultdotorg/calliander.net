@@ -3,7 +3,7 @@
 
   export let data
 
-  const { namedTags, stories } = data
+  const { stories } = data
 </script>
 
-<ListOfPosts {namedTags} {stories} />
+<ListOfPosts {stories} />
