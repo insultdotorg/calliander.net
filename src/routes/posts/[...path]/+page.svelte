@@ -10,10 +10,10 @@
   const resolver = new RichTextResolver()
 </script>
 
-<div class="grid gap-4">
-  <div class="font-bold">{story.name}</div>
+<div>
+  <div>{story.name}</div>
 
-  <div class="text-sm flex gap-4">
+  <div>
     {#each story.tag_list as tag}
       <Link href={`/category/${namedTags[tag]}`} label={tag} />
     {/each}
@@ -21,8 +21,8 @@
 
   <DateTime {story} />
 
-  <div class="grid gap-4 prose">
-    <div class="italic">{story.content.description}</div>
+  <div>
+    <div>{story.content.description}</div>
 
     <div>{@html resolver.render(story.content.content)}</div>
   </div>

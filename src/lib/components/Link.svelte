@@ -5,7 +5,7 @@
   // @todo Determine if link is active
 </script>
 
-<a {href} class="font-bold underline">
+<a {href}>
   {#if label}
     <span>{label}</span>
   {:else}

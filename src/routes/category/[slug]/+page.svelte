@@ -9,8 +9,8 @@
   const showCategories = false
 </script>
 
-<div class="grid gap-4">
-  <div class="border rounded bg-zinc-100 px-3 py-1">
+<div>
+  <div>
     Viewing posts in {tag} category (<Link href="/" label="View all posts" />)
   </div>
 
