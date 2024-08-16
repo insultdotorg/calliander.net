@@ -5,7 +5,7 @@
   export let stories
 
   const count = stories.length
-  const toShow = 1
+  const toShow = 10
   const posts = writable(toShow)
   const totalPages = Math.ceil(stories.length / toShow)
   let paginatedPosts = []
