@@ -44,6 +44,13 @@ const sitemapEntries = {
         { priority: 0.1 },
       ],
     },
+    {
+      url: [
+        { loc: `${siteUrl}/search` },
+        { changefreq: 'never' },
+        { priority: 0.0 },
+      ],
+    },
   ],
 }
 const rssEntries = new RSS({
