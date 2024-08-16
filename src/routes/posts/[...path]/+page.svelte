@@ -1,5 +1,5 @@
 <script>
-  import DateTime from '$lib/components/DateTime.svelte'
+  import Page from '$lib/components/Page.svelte'
   import RichTextResolver from 'storyblok-js-client/richTextResolver'
 
   export let data
@@ -9,14 +9,9 @@
   const resolver = new RichTextResolver()
 </script>
 
-<div>
-  <div>{story.name}</div>
-
-  <DateTime {story} />
-
-  <div>
-    <div>{story.content.description}</div>
-
-    <div>{@html resolver.render(story.content.content)}</div>
-  </div>
-</div>
+<Page
+  title={story.name}
+  isDraft={!story.first_published_at}
+  storyDate={story.first_published_at || story.created_at}>
+  <div>{@html resolver.render(story.content.content)}</div>
+</Page>

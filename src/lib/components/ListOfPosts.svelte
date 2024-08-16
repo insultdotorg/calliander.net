@@ -4,10 +4,11 @@
 
   export let stories
 
-  let paginatedPosts = []
   const count = stories.length
   const toShow = 10
   const posts = writable(toShow)
+  let paginatedPosts = []
+  let remaining = count
 
   function loadMore() {
     if ($posts < count) {
@@ -19,7 +20,10 @@
     }
   }
 
-  $: paginatedPosts = stories.slice(0, $posts)
+  $: {
+    paginatedPosts = stories.slice(0, $posts)
+    remaining = remaining - paginatedPosts.length
+  }
 </script>
 
 <div>
@@ -36,7 +40,7 @@
         on:click={() => {
           loadMore()
         }}>
-        Load More Posts
+        Load Next {toShow} of {remaining}
       </button>
     </div>
   {/if}

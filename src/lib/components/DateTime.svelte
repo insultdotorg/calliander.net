@@ -1,38 +1,26 @@
 <script>
-  export let story
+  export let isDraft = false
+  export let storyDate
 
-  const ordinal = (number) => {
-    if (number > 3 && number < 21) {
-      return 'th'
-    }
-
-    switch (number % 10) {
-      case 1:
-        return 'st'
-      case 2:
-        return 'nd'
-      case 3:
-        return 'rd'
-      default:
-        return 'th'
-    }
-  }
-
-  const isDraft = !story.first_published_at
-  const date = new Date(story.first_published_at || story.created_at)
+  const date = new Date(storyDate)
+  const locale = 'en-US'
   const isoDate = date.toISOString()
-  const month = date.toLocaleString('en-US', { month: 'long' })
-  const year = date.getFullYear()
+  const month = date.toLocaleString(locale, { month: 'short' })
+  const year = date.toLocaleString(locale, { year: '2-digit' })
   const day = date.getDate()
-  const time = date.toLocaleString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-  })
-  const prettyDate = `${month} ${day}${ordinal(day)}, ${year} / ${time}`
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
+  const timeZone = date
+    .toLocaleString(locale, {
+      day: '2-digit',
+      timeZoneName: 'longOffset',
+    })
+    .substring(4)
+  const prettyDate = `${month} ${day} '${year} / ${hours}:${minutes} [${timeZone}]`
 </script>
 
 <time datetime={isoDate}>
-  <span>{isDraft ? 'Draft' : 'Published'} date</span>
+  <span>{isDraft ? 'Drafted' : 'Published'}</span>
 
   {prettyDate}
 </time>
