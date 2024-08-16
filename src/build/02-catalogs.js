@@ -15,7 +15,6 @@ import xml from 'xml'
 
 const POSTS_PATH = 'src/lib/cms/posts'
 const MOD_FILE = `${POSTS_PATH}/lastMod.txt`
-const TAGS_FILE = 'src/lib/cms/tags.json'
 const OUTPUT_ALGOLIA = 'src/lib/cms/algolia.json'
 const OUTPUT_RSS = 'static/feed.xml'
 const OUTPUT_SITEMAP = 'static/sitemap.xml'
@@ -24,11 +23,6 @@ logHeading('Building Algolia, RSS, and sitemap catalogs')
 
 if (!existsSync(POSTS_PATH)) {
   logError('Posts cache is missing')
-  process.exit(1)
-}
-
-if (!existsSync(TAGS_FILE)) {
-  logError('Tags cache is missing')
   process.exit(1)
 }
 
@@ -96,18 +90,6 @@ cachedFiles.forEach((file) => {
       { lastMod: postDate },
       { changefreq: 'daily' },
       { priority: 0.5 },
-    ],
-  })
-})
-
-const tags = JSON.parse(readFileSync(TAGS_FILE, 'utf-8'))
-Object.entries(tags).forEach((tag) => {
-  sitemapEntries.urlset.push({
-    url: [
-      { loc: `${siteUrl}/category/${tag[0]}` },
-      { lastMod: modDate.toISOString() },
-      { changefreq: 'daily' },
-      { priority: 0.2 },
     ],
   })
 })

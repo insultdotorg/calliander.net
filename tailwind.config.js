@@ -5,17 +5,15 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
+      colors: {
+        accent: '#44403c',
+        background: '#fde047',
+        copy: '#0c0a09',
+      },
       fontFamily: {
-        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
-        serif: ['"Libre Baskerville"', ...defaultTheme.fontFamily.serif],
-      },
-      height: {
-        icon: '0.85rem',
-      },
-      width: {
-        icon: '0.85rem',
+        sans: ['"EB Garamond"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [],
 }

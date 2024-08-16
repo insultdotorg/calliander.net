@@ -53,27 +53,6 @@ export async function fetchPaginatedPosts(client, options) {
   return posts
 }
 
-export async function fetchTags(client) {
-  const tags = {}
-
-  const response = await client
-    .get('cdn/tags', {
-      version: isProd ? 'published' : 'draft',
-    })
-    .catch((error) => {
-      logError('Encountered an issue accessing the Storyblok API', error)
-      process.exit(1)
-    })
-
-  if (response.data.tags.length > 0) {
-    response.data.tags.forEach((tag) => {
-      tags[slugify(tag.name)] = tag.name
-    })
-  }
-
-  return tags
-}
-
 export function getAlgoliaIndex(write = false) {
   const client = algoliasearch(
     ALGOLIA_APPLICATION_ID,

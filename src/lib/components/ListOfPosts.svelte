@@ -2,14 +2,14 @@
   import { writable } from 'svelte/store'
   import Card from '$lib/components/Card.svelte'
 
-  export let namedTags
-  export let showCategories = true
   export let stories
 
-  let paginatedPosts = []
   const count = stories.length
   const toShow = 10
   const posts = writable(toShow)
+  const totalPages = Math.ceil(stories.length / toShow)
+  let paginatedPosts = []
+  let page = 0
 
   function loadMore() {
     if ($posts < count) {
@@ -21,26 +21,45 @@
     }
   }
 
-  $: paginatedPosts = stories.slice(0, $posts)
+  $: {
+    paginatedPosts = stories.slice(0, $posts)
+    page++
+  }
 </script>
 
-<div class="grid gap-8">
-  <div class="grid gap-8">
-    {#each paginatedPosts as story, index}
-      <Card {index} {namedTags} {showCategories} {story} />
+<div class="pt-24 pb-12 max-w-lg m-auto">
+  <div class="grid gap-12 px-6 md:px-0">
+    {#each paginatedPosts as story}
+      <Card {story} />
     {/each}
   </div>
 
   {#if $posts < count}
-    <div>
+    <div class="grid grid-cols-3 items-center px-8 pt-20 text-base">
       <button
         type="button"
+        class="flex gap-1 items-center uppercase"
         on:click={() => {
           loadMore()
-        }}
-        class="border border-black rounded py-2 px-6 font-sans uppercase">
-        Load More Posts
+        }}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-4 w-4">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+
+        <span class="underline">Older</span>
       </button>
+
+      <div class="text-center">
+        {page} of {totalPages}
+      </div>
     </div>
   {/if}
 </div>

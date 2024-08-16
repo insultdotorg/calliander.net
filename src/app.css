@@ -4,78 +4,73 @@
 
 @layer base {
   @font-face {
-    font-family: 'Libre Baskerville';
+    font-family: 'EB Garamond';
     font-display: block;
     font-weight: 400;
-    src: url('/fonts/libre-baskerville-regular.woff2') format('woff2');
+    src: url('/fonts/eb-garamond-regular.woff2') format('woff2');
     unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F, U+2200-22FF, U+FB00-FB4F;
   }
 
   @font-face {
-    font-family: 'Libre Baskerville';
+    font-family: 'EB Garamond';
     font-display: block;
     font-weight: 700;
-    src: url('/fonts/libre-baskerville-bold.woff2') format('woff2');
+    src: url('/fonts/eb-garamond-bold.woff2') format('woff2');
     unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F, U+2200-22FF, U+FB00-FB4F;
   }
 
   @font-face {
-    font-family: 'Libre Baskerville';
+    font-family: 'EB Garamond';
     font-display: block;
     font-weight: 400;
     font-style: italic;
-    src: url('/fonts/libre-baskerville-italic.woff2') format('woff2');
+    src: url('/fonts/eb-garamond-italic.woff2') format('woff2');
     unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F, U+2200-22FF, U+FB00-FB4F;
   }
 
   @font-face {
-    font-family: 'Libre Baskerville';
+    font-family: 'EB Garamond';
     font-display: block;
     font-weight: 700;
     font-style: italic;
-    src: url('/fonts/libre-baskerville-bold-italic.woff2') format('woff2');
+    src: url('/fonts/eb-garamond-bold-italic.woff2') format('woff2');
     unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F, U+2200-22FF, U+FB00-FB4F;
   }
 
-  @font-face {
-    font-family: 'Montserrat';
-    font-display: block;
-    font-weight: 400;
-    src: url('/fonts/montserrat-regular.woff2') format('woff2');
-    unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F, U+2200-22FF, U+FB00-FB4F;
-  }
-
-  @font-face {
-    font-family: 'Montserrat';
-    font-display: block;
-    font-weight: 700;
-    src: url('/fonts/montserrat-bold.woff2') format('woff2');
-    unicode-range: U+0020-007F, U+00A0-00FF, U+0100-017F, U+2000-206F, U+2070-209F, U+20A0-20CF, U+2100-214F, U+2200-22FF, U+FB00-FB4F;
+  :root {
+    @apply bg-background text-copy selection:bg-yellow-200;
   }
 }
 
 @layer components {
-  .post.first {
-    @apply md:mb-24;
+  a[href="#content"] {
+    clip: rect(1px, 1px, 1px, 1px);
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    padding: 20px;
+    position: absolute;
+    text-decoration: underline;
+    top: 1rem;
+    left: 1rem;
+    width: 1px;
+    z-index: 999;
   }
 
-  .post-title {
-    @apply tracking-tight text-2xl md:text-3xl;
+  a[href="#content"]:focus {
+    clip: auto;
+    height: auto;
+    overflow: visible;
+    width: auto;
   }
 
-  .post-title.first {
-    @apply order-2 text-4xl md:mt-8 md:text-5xl;
+  #rich-text p:first-of-type {
+    @apply indent-0;
   }
+}
 
-  .post-meta {
-    @apply grid text-sm text-neutral-500 uppercase;
-  }
-
-  .post-meta.first {
-    @apply order-1;
-  }
-
-  .post-date.draft {
-    @apply inline-flex gap-2 items-center;
+@layer utilities {
+  .font-variant-caps {
+    font-variant: small-caps;
   }
 }

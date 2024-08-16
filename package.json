@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"cache": "node src/build/01-posts.js && node src/build/02-tags.js && node src/build/03-catalogs.js && node src/build/04-assets.js",
-		"recache": "node src/build/01-posts.js clear && node src/build/02-tags.js && node src/build/03-catalogs.js && node src/build/04-assets.js clear",
+		"cache": "node src/build/01-posts.js && node src/build/02-catalogs.js && node src/build/03-assets.js",
+		"recache": "node src/build/01-posts.js clear && node src/build/02-catalogs.js && node src/build/03-assets.js clear",
 		"build": "npm run deploy && vite preview",
 		"build:fresh": "npm run deploy:fresh && vite preview",
 		"deploy": "npm run cache && vite build",
@@ -17,7 +17,6 @@
 		"@sveltejs/adapter-static": "^3.0.3",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
-		"@tailwindcss/typography": "^0.5.14",
 		"@vitejs/plugin-basic-ssl": "^1.1.0",
 		"algoliasearch": "^4.24.0",
 		"autoprefixer": "^10.4.20",
