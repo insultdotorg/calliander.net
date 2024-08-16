@@ -1,6 +1,6 @@
 <script>
   import DateTime from '$lib/components/DateTime.svelte'
-  import Divider from '$lib/components/Divider.svelte'
+  import PageTitle from '$lib/components/PageTitle.svelte'
 
   export let isDraft = false
   export let storyDate
@@ -8,11 +8,7 @@
 </script>
 
 <div>
-  <div>
-    <div>{title}</div>
-
-    <Divider />
-  </div>
+  <PageTitle>{title}</PageTitle>
 
   <div>
     <slot />

@@ -8,19 +8,11 @@
   const month = date.toLocaleString(locale, { month: 'short' })
   const year = date.toLocaleString(locale, { year: '2-digit' })
   const day = date.getDate()
-  const hours = date.getHours()
-  const minutes = date.getMinutes()
-  const timeZone = date
-    .toLocaleString(locale, {
-      day: '2-digit',
-      timeZoneName: 'longOffset',
-    })
-    .substring(4)
-  const prettyDate = `${month} ${day} '${year} / ${hours}:${minutes} [${timeZone}]`
+  const prettyDate = `${month} ${day} '${year}`
 </script>
 
-<time datetime={isoDate}>
-  <span>{isDraft ? 'Drafted' : 'Published'}</span>
+<time datetime={isoDate} class="uppercase text-accent">
+  <span class="sr-only">{isDraft ? 'Drafted' : 'Published'}</span>
 
   {prettyDate}
 </time>

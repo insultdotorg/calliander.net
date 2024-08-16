@@ -9,7 +9,8 @@
   {href}
   target="_blank"
   rel="noopener noreferrer"
-  aria-labelledby="label-external">
+  aria-labelledby="label-external"
+  class="underline">
   {#if label}
     <span>{label}</span>
   {:else}

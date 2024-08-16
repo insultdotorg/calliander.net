@@ -2,4 +2,4 @@
 
 Storyblok+SvelteKit
 
-Design ported from the Jekyll theme [Hitchens](https://github.com/patdryburgh/hitchens)
+Design ported from the Jekyll theme [Hitchens](https://github.com/patdryburgh/hitchens) into TailwindCSS

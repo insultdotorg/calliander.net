@@ -6,10 +6,10 @@
   const year = new Date().getFullYear()
 </script>
 
-<div>
-  <a href="#content">Skip to content</a>
+<div class="text-copy">
+  <a href="#content" class="hidden">Skip to content</a>
 
-  <header>
+  <header class="bg-background">
     <Navigation />
   </header>
 
@@ -17,12 +17,12 @@
     <slot />
   </main>
 
-  <footer>
-    <div>...search...</div>
+  <footer class="bg-background">
+    <div class="hidden">...search...</div>
 
     <Navigation />
 
-    <div>
+    <div class="grid text-center">
       <div>
         &copy; 1997&mdash;{year} by <ExternalLink
           href="https://insult.org/author/calliander"
@@ -30,7 +30,9 @@
       </div>
 
       <div>
-        <ExternalLink href="https://github.com/insultdotorg/calliander.net" label="Source code" />
+        <ExternalLink
+          href="https://github.com/insultdotorg/calliander.net"
+          label="Source code" />
       </div>
     </div>
   </footer>
