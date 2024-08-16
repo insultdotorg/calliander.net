@@ -38,7 +38,7 @@
   }
 
   :root {
-    @apply bg-background text-copy;
+    @apply bg-background text-copy selection:bg-yellow-200;
   }
 }
 
