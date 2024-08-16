@@ -12,7 +12,7 @@
   const separator = full ? ', ' : ' &CloseCurlyQuote;'
 </script>
 
-<time datetime={isoDate} class="uppercase text-accent text-lg">
+<time datetime={isoDate} class="uppercase text-accent text-lg md:grow">
   <span class="sr-only">{isDraft ? 'Drafted' : 'Published'}</span>
 
   {month} {day}{@html separator}{year}

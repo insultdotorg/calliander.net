@@ -6,8 +6,8 @@
   const year = new Date().getFullYear()
 </script>
 
-<div class="bg-background text-copy text-xl">
-  <a href="#content" class="hidden">Skip to content</a>
+<div class="text-xl">
+  <a href="#content">Skip to content</a>
 
   <header class="py-6">
     <Navigation />

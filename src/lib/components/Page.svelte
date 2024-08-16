@@ -9,15 +9,15 @@
   const full = true
 </script>
 
-<div class="bg-white shadow-xl">
+<div class="bg-white shadow-xl max-w-5xl m-auto">
   <PageTitle>{title}</PageTitle>
 
-  <div class="px-6 pt-24 pb-20">
+  <div id="rich-text" class="grid px-6 pt-24 pb-20 indent-8 max-w-lg m-auto md:px-0">
     <slot />
   </div>
 
   {#if storyDate}
-    <div class="-mt-6 px-6 pb-20 text-right">
+    <div class="-mt-6 px-6 pb-20 text-right max-w-lg m-auto md:px-0">
       <div>Calliander</div>
 
       <DateTime {full} {isDraft} {storyDate} />

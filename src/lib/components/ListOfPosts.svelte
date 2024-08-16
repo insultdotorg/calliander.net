@@ -27,8 +27,8 @@
   }
 </script>
 
-<div class="pt-24 pb-12">
-  <div class="grid gap-12 px-6">
+<div class="pt-24 pb-12 max-w-lg m-auto">
+  <div class="grid gap-12 px-6 md:px-0">
     {#each paginatedPosts as story}
       <Card {story} />
     {/each}

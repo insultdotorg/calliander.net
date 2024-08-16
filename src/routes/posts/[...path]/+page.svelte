@@ -13,5 +13,5 @@
   title={story.name}
   isDraft={!story.first_published_at}
   storyDate={story.first_published_at || story.created_at}>
-  <div>{@html resolver.render(story.content.content)}</div>
+  {@html resolver.render(story.content.content)}
 </Page>
