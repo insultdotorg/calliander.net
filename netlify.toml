@@ -1,3 +1,8 @@
 [build]
-  command = "npm run deploy"
-  publish = "build"
+command = "npm run deploy"
+publish = "build"
+
+[[plugins]]
+package = "netlify-plugin-cache"
+  [plugins.inputs]
+  paths = ["src/lib/cms", "static/f"]
