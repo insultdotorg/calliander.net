@@ -6,10 +6,10 @@
   const year = new Date().getFullYear()
 </script>
 
-<div class="text-copy">
+<div class="bg-background text-copy text-xl">
   <a href="#content" class="hidden">Skip to content</a>
 
-  <header class="bg-background">
+  <header class="py-6">
     <Navigation />
   </header>
 
@@ -17,23 +17,29 @@
     <slot />
   </main>
 
-  <footer class="bg-background">
-    <div class="hidden">...search...</div>
+  <footer class="pt-12">
+    <form action="/search" method="get" class="pb-4 text-center">
+      <input
+        type="text"
+        name="term"
+        placeholder="Search..."
+        class="w-64 bg-transparent text-copy placeholder:underline placeholder:text-accent placeholder:decoration-accent" />
+
+      <button type="submit" class="sr-only">Submit search</button>
+    </form>
 
     <Navigation />
 
-    <div class="grid text-center">
-      <div>
-        &copy; 1997&mdash;{year} by <ExternalLink
-          href="https://insult.org/author/calliander"
-          label="Calliander" />
-      </div>
+    <div class="flex gap-1 items-center justify-center pb-12 text-base">
+      &copy; 1997&mdash;{year} by <ExternalLink
+        href="https://insult.org/author/calliander"
+        label="Calliander" />
 
-      <div>
-        <ExternalLink
-          href="https://github.com/insultdotorg/calliander.net"
-          label="Source code" />
-      </div>
+      <span aria-hidden="true" class="mx-1">&centerdot;</span>
+
+      <ExternalLink
+        href="https://github.com/insultdotorg/calliander.net"
+        label="Source code" />
     </div>
   </footer>
 </div>

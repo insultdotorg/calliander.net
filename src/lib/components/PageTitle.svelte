@@ -1,9 +1,9 @@
-<div class="grid gap-4 text-center">
+<div class="pt-32 text-center">
   <div class="text-4xl">
     <slot />
   </div>
 
-  <div>
+  <div class="pt-4">
     <svg
       aria-hidden="true"
       viewBox="0 0 152 12"

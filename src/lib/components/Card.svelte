@@ -4,9 +4,9 @@
   export let story
 </script>
 
-<div class="grid gap-4 text-xl">
-  <div class="order-2">
-    <a href={`/${story.full_slug}`}>{story.name}</a>
+<div class="grid gap-2">
+  <div class="order-2 text-2xl">
+    <a href={`/${story.full_slug}`} class="underline">{story.name}</a>
   </div>
 
   <DateTime

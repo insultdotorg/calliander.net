@@ -8,15 +8,13 @@
 </script>
 
 <div class="bg-background">
-  <div class="grid gap-4 text-center">
+  <div class="text-center pt-12">
     <div class="text-6xl">calliander.net</div>
 
-    <div class="text-2xl text-accent">Some descriptive text goes here.</div>
+    <div class="pt-4 text-2xl text-accent">Some descriptive text goes here.</div>
   </div>
 
-  <div class="">
-    <PageTitle>Contents</PageTitle>
-  </div>
+  <PageTitle>Contents</PageTitle>
 
   <ListOfPosts {stories} />
 </div>

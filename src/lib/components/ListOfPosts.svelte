@@ -5,10 +5,11 @@
   export let stories
 
   const count = stories.length
-  const toShow = 10
+  const toShow = 1
   const posts = writable(toShow)
+  const totalPages = Math.ceil(stories.length / toShow)
   let paginatedPosts = []
-  let remaining = count
+  let page = 0
 
   function loadMore() {
     if ($posts < count) {
@@ -22,26 +23,25 @@
 
   $: {
     paginatedPosts = stories.slice(0, $posts)
-    remaining = remaining - paginatedPosts.length
+    page++
   }
 </script>
 
-<div class="">
-  <div class="grid gap-4">
+<div class="pt-24 pb-12">
+  <div class="grid gap-12 px-6">
     {#each paginatedPosts as story}
       <Card {story} />
     {/each}
   </div>
 
   {#if $posts < count}
-    <div class="text-center">
+    <div class="grid grid-cols-3 items-center px-8 pt-20 text-base">
       <button
         type="button"
-        class="border border-copy border-dashed py-2 px-6 uppercase"
+        class="flex gap-1 items-center uppercase"
         on:click={() => {
           loadMore()
         }}>
-        Load next {toShow} of {remaining} post{remaining !== 1 ? 's' : ''}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -50,10 +50,16 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="h-6 w-6 m-auto">
-          <polyline points="6 9 12 15 18 9"></polyline>
+          class="h-4 w-4">
+          <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
+
+        <span class="underline">Older</span>
       </button>
+
+      <div class="text-center">
+        {page} of {totalPages}
+      </div>
     </div>
   {/if}
 </div>
