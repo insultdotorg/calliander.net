@@ -17,7 +17,7 @@ const ALGOLIA_WRITE_API_KEY = process.env.ALGOLIA_WRITE_API_KEY
 const PRIME_URL = process.env.DEPLOY_PRIME_URL
 
 export const isProd = !!PRIME_URL
-export const siteUrl = isProd
+export const siteUrl = isProd && !APP_URL
   ? PRIME_URL
   : APP_URL
 export const awsUrl = 'https://s3.amazonaws.com/a-us.storyblok.com'
