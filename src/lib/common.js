@@ -141,8 +141,8 @@ export function slugify(string) {
 
 export function sortCachedStories(stories) {
   return stories.sort((a, b) => {
-    const aDate = new Date(a.sort_by_date)
-    const bDate = new Date(b.sort_by_date)
+    const aDate = new Date(a.first_published_at || a.created_at)
+    const bDate = new Date(b.first_published_at || b.created_at)
 
     if (aDate > bDate) {
       return -1
