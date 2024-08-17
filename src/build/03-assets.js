@@ -14,8 +14,6 @@ import { Readable } from 'stream'
 logHeading('Downloading assets from Storyblok')
 
 const CLEAR = process.argv[2] === 'clear'
-let CACHED_FILES = 0
-let SKIPPED_FILES = 0
 
 if (CLEAR) {
   logWarning('Cache clearing requested, will download all assets')
@@ -38,13 +36,13 @@ for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
   if (response.data.assets.length > 0) {
     totalPages = Math.ceil(response.total / 100)
 
-    logInfo(`Collecting assets, page ${currentPage} of ${totalPages}`)
+    response.data.assets.forEach((asset) => downloadAsset(asset))
 
-    response.data.assets.forEach(async (asset) => await downloadAsset(asset))
+    logInfo(`Collecting assets, page ${currentPage} of ${totalPages}`)
   }
 }
 
-logOutcome(`Finishing downloading collected (may take some time)`)
+logOutcome(`Finishing downloading collected assets (may take some time)`)
 
 async function downloadAsset(asset) {
   const filename = asset.filename.replace(/^.*\//, '')
@@ -57,27 +55,25 @@ async function downloadAsset(asset) {
 
   if (existsSync(destinationFile)) {
     const fileStats = statSync(destinationFile)
-    const isNewer =
-      new Date(asset.updated_at || asset.created_at) < fileStats.mtime
+    const incomingDate = new Date(asset.updated_at || asset.created_at)
+    const isNewer = incomingDate > fileStats.mtime
     const isSameSize = asset.content_length === fileStats.size
 
     if (isNewer && isSameSize && !CLEAR) {
-      SKIPPED_FILES++
-
-      return
+      return false
     }
   }
 
-  const download = await fetch(asset.filename).catch((error) => {
+  mkdirSync(destinationPath, { recursive: true })
+
+  const stream = createWriteStream(destinationFile)
+
+  const { body } = await fetch(asset.filename).catch((error) => {
     logError(`Encountered an error downloading ${asset.filename}`, error)
     process.exit(1)
   })
 
-  mkdirSync(destinationPath, { recursive: true })
+  Readable.fromWeb(body).pipe(stream)
 
-  const writer = createWriteStream(destinationFile)
-
-  finished(Readable.fromWeb(download.body).pipe(writer))
-
-  CACHED_FILES++
+  return true
 }
