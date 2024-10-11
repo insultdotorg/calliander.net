@@ -87,6 +87,6 @@ logInfo(`${cachedFiles.length} RSS entries written`)
 
 const sitemapXml = xml(sitemapEntries, { declaration: true, indent: '    ' })
 writeFileSync(OUTPUT_SITEMAP, sitemapXml)
-logInfo(`${sitemapEntries.urlset.length} sitemap entries written`)
+logInfo(`${sitemapEntries.urlset.length - 1} sitemap entries written`)
 
 logOutcome('Finished writing catalogs')
