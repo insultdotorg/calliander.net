@@ -1,4 +1,3 @@
-import algoliasearch from 'algoliasearch'
 import chalk from 'chalk'
 import dotenv from 'dotenv'
 import StoryblokClient from 'storyblok-js-client'
@@ -10,9 +9,6 @@ const STORYBLOK_SPACE_ID = process.env.STORYBLOK_SPACE_ID
 const STORYBLOK_OAUTH_TOKEN = process.env.STORYBLOK_OAUTH_TOKEN
 const STORYBLOK_PREVIEW_TOKEN = process.env.STORYBLOK_PREVIEW_TOKEN
 const STORYBLOK_PUBLIC_TOKEN = process.env.STORYBLOK_PUBLIC_TOKEN
-const ALGOLIA_APPLICATION_ID = process.env.ALGOLIA_APPLICATION_ID
-const ALGOLIA_SEARCH_API_KEY = process.env.ALGOLIA_SEARCH_API_KEY
-const ALGOLIA_WRITE_API_KEY = process.env.ALGOLIA_WRITE_API_KEY
 
 const PRIME_URL = process.env.DEPLOY_PRIME_URL
 
@@ -51,16 +47,6 @@ export async function fetchPaginatedPosts(client, options) {
   }
 
   return posts
-}
-
-export function getAlgoliaIndex(write = false) {
-  const client = algoliasearch(
-    ALGOLIA_APPLICATION_ID,
-    write ? ALGOLIA_WRITE_API_KEY : ALGOLIA_SEARCH_API_KEY
-  )
-  const index = client.initIndex(isProd ? 'main' : 'test')
-
-  return index
 }
 
 export async function getCachedFiles() {

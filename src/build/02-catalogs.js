@@ -1,5 +1,4 @@
 import {
-  getAlgoliaIndex,
   logError,
   logHeading,
   logInfo,
@@ -15,11 +14,10 @@ import xml from 'xml'
 
 const POSTS_PATH = 'src/lib/cms/posts'
 const MOD_FILE = `${POSTS_PATH}/lastMod.txt`
-const OUTPUT_ALGOLIA = 'src/lib/cms/algolia.json'
 const OUTPUT_RSS = 'static/feed.xml'
 const OUTPUT_SITEMAP = 'static/sitemap.xml'
 
-logHeading('Building Algolia, RSS, and sitemap catalogs')
+logHeading('Building RSS and sitemap catalogs')
 
 if (!existsSync(POSTS_PATH)) {
   logError('Posts cache is missing')
@@ -28,7 +26,6 @@ if (!existsSync(POSTS_PATH)) {
 
 const modDate = new Date(readFileSync(MOD_FILE, 'utf-8'))
 
-const algoliaEntries = []
 const sitemapEntries = {
   urlset: [
     {
@@ -42,13 +39,6 @@ const sitemapEntries = {
         { lastMod: modDate.toISOString() },
         { changefreq: 'daily' },
         { priority: 0.1 },
-      ],
-    },
-    {
-      url: [
-        { loc: `${siteUrl}/search` },
-        { changefreq: 'never' },
-        { priority: 0.0 },
       ],
     },
   ],
@@ -74,15 +64,6 @@ cachedFiles.forEach((file) => {
   const postDescription = post.content.description
   const renderedContent = resolver.render(post.content.content)
 
-  algoliaEntries.push({
-    objectID: post.uuid,
-    title: post.name,
-    description: postDescription,
-    path: postUrl,
-    content: striptags(renderedContent),
-    date: postDate,
-  })
-
   rssEntries.item({
     title: post.name,
     description: postDescription,
@@ -100,19 +81,6 @@ cachedFiles.forEach((file) => {
     ],
   })
 })
-
-const algolia = getAlgoliaIndex(true)
-await algolia
-  .saveObjects(algoliaEntries)
-  .then(() => {
-    logInfo(
-      `${algoliaEntries.length} entries uploaded to Algolia index ${algolia.indexName}`
-    )
-  })
-  .catch((error) => {
-    logError('Unable to upload records to Algolia', error)
-  })
-writeFileSync(OUTPUT_ALGOLIA, JSON.stringify(algoliaEntries, null, 2))
 
 writeFileSync(OUTPUT_RSS, rssEntries.xml({ indent: true }))
 logInfo(`${cachedFiles.length} RSS entries written`)
