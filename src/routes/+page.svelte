@@ -11,7 +11,7 @@
   <div class="text-center px-6 pt-12 md:pt-32">
     <div class="text-6xl md:text-9xl">calliander.net</div>
 
-    <div class="pt-4 text-2xl text-accent md:pt-8 md:text-6xl">Some descriptive text goes here.</div>
+    <div class="pt-4 text-2xl text-accent md:pt-8 md:text-6xl">Stories from a deranged mind.</div>
   </div>
 
   <PageTitle>Contents</PageTitle>
