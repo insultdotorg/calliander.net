@@ -6,6 +6,10 @@
   const year = new Date().getFullYear()
 </script>
 
+<svelte:head>
+  <meta name="robots" content="noai, noimageai">
+</svelte:head>
+
 <div class="text-xl">
   <a href="#content">Skip to content</a>
 
